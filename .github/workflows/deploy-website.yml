@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    uses: ehud-am/vizoalica/.github/workflows/deploy-vizoalica-pages.yml@v0.5.2
+    uses: ehud-am/vizoalica/.github/workflows/deploy-vizoalica-pages.yml@main
     with:
       site-directory: "."
     secrets: inherit
