@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A page view is sent on load and again whenever a visitor reaches a different page key, with no cookies." />
+    <title>Page views | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="pageviews">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Page views</p>
+        <h1>Page views</h1>
+        <p class="lead">A page view is sent on load and again whenever a visitor reaches a different page key, with no cookies.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Single-page navigation</span></div><div class="demo-body"><div class="row"><button class="btn" data-route="#/home">#/home</button><button class="btn" data-route="#/orders/8841">#/orders/8841</button><button class="btn" data-route="#/orders/8842">#/orders/8842</button><button class="btn" data-route="#/pricing">#/pricing</button><button class="btn" data-route="#section-2">#section-2 (anchor)</button><button class="btn" data-query>Change only ?query</button></div>
+<dl class="kv"><dt>Current page key</dt><dd data-current-key></dd></dl><ul class="log" data-log aria-live="polite"><li class="no">Nothing yet.</li></ul></div></div><h2 class="section">Payload</h2><p>For a page at <code>https://example.com/pricing?token=secret&amp;plan=pro</code> the SDK sends structured, minimised data. The query value never leaves the browser.</p><span class="code-label">Equivalent structured data</span><pre class="code"><code>{
+  &quot;url_origin&quot;: &quot;https://example.com&quot;,
+  &quot;url_path&quot;: &quot;/pricing&quot;,
+  &quot;url_query_redacted&quot;: true
+}</code></pre><h2 class="section">How it works</h2><ul><li>A page is named by its <strong>page key</strong>: the path, plus the route after <code>#</code> when it starts with <code>/</code>.</li><li>A view is sent on load and when <code>pushState</code>, <code>replaceState</code>, back/forward or a fragment change reaches a <em>different</em> key.</li><li>Anchors, tokens and other fragments are ignored, so sign-in data in an address is never recorded.</li><li>If consent is explicitly <code>analytics-denied</code>, in-page navigation views are not sent.</li></ul>
+<div class="table-wrap"><table><tr><th>Address</th><th>Page key</th></tr><tr><td><code>/pricing?plan=pro</code></td><td><code>/pricing</code></td></tr><tr><td><code>/#/pricing</code></td><td><code>/#/pricing</code></td></tr><tr><td><code>/app#/orders/8841</code></td><td><code>/app#/orders/:id</code></td></tr><tr><td><code>/docs#section-2</code></td><td><code>/docs</code></td></tr></table></div>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate page views"><p>Vizoalica needs one script tag on your pages; nothing else is required for this feature.</p><span class="code-label">Your Install page in the console shows this tag with your own values</span><pre class="code"><code>&lt;script
+  defer
+  src=&quot;https://&lt;your-backend&gt;.workers.dev/vizoalica.js&quot;
+  data-source=&quot;&lt;website key&gt;&quot;
+  data-token-url=&quot;none&quot;
+&gt;&lt;/script&gt;</code></pre><ul><li><code>data-auto-page-view="false"</code> disables automatic views (and in-page navigation views).</li><li>Module users: <code>init({ autoNavigation: false })</code>.</li><li>Single-page apps need nothing extra: history changes are observed automatically.</li></ul></template>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Count what matters to you, such as signups, downloads or plan choices, with a single line." />
+    <title>Custom events | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="events">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Custom events</p>
+        <h1>Custom events</h1>
+        <p class="lead">Count what matters to you, such as signups, downloads or plan choices, with a single line.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Send a custom event</span></div><div class="demo-body"><form data-form class="fields-2"><label class="field">Event name<input name="name" value="signup" spellcheck="false"></label><label class="field">Properties (JSON)<textarea name="props" spellcheck="false">{ "plan": "pro", "annual": true }</textarea></label><div class="row"><button class="btn primary" type="submit">track()</button></div></form><p class="hint">Try <code>Sign Up</code> (rejected name) or a property called <code>email</code> (rejected as sensitive).</p><p data-result aria-live="polite"></p><span class="code-label">Recorded fields (documented)</span><pre class="code" data-nocopy><code data-out>Interact with the demo above.</code></pre><ul class="log" data-log aria-live="polite"><li class="no">Nothing yet.</li></ul></div></div><h2 class="section">How it works</h2><ul><li>The <strong>name</strong>: lowercase letters, digits, underscores; starts with a letter; 2 to 64 characters.</li><li><strong>Properties</strong> are optional: up to 25 with text, number, boolean or null values. Sensitive-looking names (<code>email</code>, <code>password</code>, <code>token</code>, …) are rejected.</li><li>The page is added automatically, as a page key (<code>/orders/:id</code>).</li><li>Text and boolean values are grouped (redacted, cut to 64 characters, up to 10 properties per event). Numbers are collected but not grouped.</li><li>Report: console <em>Analytics → Events</em>, or <code>get_custom_events</code> in your assistant.</li></ul><h2 class="section">Payload</h2><pre class="code"><code>{
+  &quot;event&quot;: &quot;signup&quot;,
+  &quot;page&quot;: &quot;/pricing&quot;,
+  &quot;properties&quot;: { &quot;plan&quot;: &quot;pro&quot;, &quot;annual&quot;: true }
+}</code></pre>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Add a custom event"><p>Call <code>track</code> on the client the script exposes:</p><span class="code-label">Script tag</span><pre class="code"><code>&lt;script&gt;
+  window.vizoalica?.track(&#x27;signup&#x27;, {
+    properties: { plan: &#x27;pro&#x27;, annual: true }
+  });
+&lt;/script&gt;</code></pre><span class="code-label">Module</span><pre class="code"><code>import { init } from &#x27;@vizoalica/browser-sdk&#x27;;
+
+const client = init({ endpoint, sourceKey, tokenProvider });
+client.track(&#x27;signup&#x27;, { properties: { plan: &#x27;pro&#x27;, annual: true } });</code></pre><p>The optional chaining (<code>?.</code>) keeps your site working if the SDK is blocked or not yet loaded. Update the backend first (migration <code>0004_custom_event_reports.sql</code>).</p></template>
+  </body>
+</html>

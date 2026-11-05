@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Clicks on buttons and links are recorded with a safe name, never with typed text or positions." />
+    <title>Actions (clicks) | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="actions">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Actions (clicks)</p>
+        <h1>Actions (clicks)</h1>
+        <p class="lead">Clicks on buttons and links are recorded with a safe name, never with typed text or positions.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Click a control to see what is recorded</span></div><div class="demo-body"><div class="row">
+<button class="btn" data-action-demo>Start free trial</button>
+<button class="btn" data-action-demo aria-label="Open settings">⚙</button>
+<button class="btn" data-action-demo data-vizoalica-action="Buy now">🛒</button>
+<button class="btn" data-action-demo>Order 8841</button>
+<button class="btn" data-action-demo>Email jane@example.com 0123456789</button>
+<button class="btn" data-action-demo data-vizoalica-ignore>Delete jane@example.com</button>
+<a class="btn" data-action-demo href="https://github.com/ehud-am/vizoalica?tab=readme-ov-file">GitHub link</a>
+<button class="btn" data-action-demo></button></div>
+<section data-vizoalica-ignore class="card"><p class="hint">Everything in this area is ignored.</p><button class="btn small" data-action-demo>Hidden button</button></section>
+<span class="code-label">Recorded fields (documented)</span><pre class="code" data-nocopy><code data-out>Interact with the demo above.</code></pre><ul class="log" data-log aria-live="polite"><li class="no">Nothing yet.</li></ul>
+<label class="field">Try the name cleaning<input data-redact-in placeholder="Pay 4111 1111 1111 1111 for jane@example.com"></label><dl class="kv"><dt>Cleaned name</dt><dd data-redact-out>(empty)</dd></dl></div></div><h2 class="section">How it works</h2><ul><li>An action is a click, Enter or Space on a <code>button</code>, <code>a[href]</code>, button-like <code>input</code>, or an element with role <code>button</code>, <code>link</code>, <code>menuitem</code> or <code>tab</code>.</li><li>The name comes from, in order: <code>data-vizoalica-action</code>, <code>aria-label</code>, visible text (or <code>value</code>), <code>title</code>, image <code>alt</code>, then “Unlabeled button/link/control”.</li><li>Names are cleaned in browser and backend: emails → <code>[email]</code>, 6+ digit runs → <code>[number]</code>, token-like words → <code>[token]</code>, cut at 80 characters. Short numbers like <code>8841</code> are not detected: name such controls explicitly.</li><li>A repeated click on the same control within 500 ms counts once; at most 100 actions a minute per page load.</li></ul>
+<p><strong>Never recorded:</strong> typed text, field values, clicks on plain text, images or empty space, anything in cross-site iframes, link queries and fragments, <code>mailto:</code>/<code>tel:</code>, positions, element identifiers. There is no session replay or heatmap.</p><h2 class="section">Payload</h2><pre class="code"><code>{
+  &quot;page&quot;: &quot;/pricing&quot;,
+  &quot;name&quot;: &quot;Buy now&quot;,
+  &quot;kind&quot;: &quot;button&quot;
+}
+
+{ &quot;page&quot;: &quot;/docs&quot;, &quot;name&quot;: &quot;GitHub link&quot;, &quot;kind&quot;: &quot;link&quot;,
+  &quot;destination&quot;: { &quot;origin&quot;: &quot;https://github.com&quot;, &quot;path&quot;: &quot;/ehud-am/vizoalica&quot; } }</code></pre>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate actions"><p>Vizoalica needs one script tag on your pages; nothing else is required for this feature.</p><span class="code-label">Your Install page in the console shows this tag with your own values</span><pre class="code"><code>&lt;script
+  defer
+  src=&quot;https://&lt;your-backend&gt;.workers.dev/vizoalica.js&quot;
+  data-source=&quot;&lt;website key&gt;&quot;
+  data-token-url=&quot;none&quot;
+&gt;&lt;/script&gt;</code></pre><p>Actions are always on. Two optional attributes shape them:</p><pre class="code"><code>&lt;!-- Name a control whose label is unclear or contains a record number. --&gt;
+&lt;button data-vizoalica-action=&quot;Buy now&quot;&gt;🛒&lt;/button&gt;
+
+&lt;!-- Never record this control, or anything inside this area. --&gt;
+&lt;button data-vizoalica-ignore&gt;Delete jane@example.com&lt;/button&gt;
+&lt;section data-vizoalica-ignore&gt;
+  &lt;button&gt;Nothing in here is recorded&lt;/button&gt;
+&lt;/section&gt;</code></pre><p><code>data-vizoalica-ignore</code> wins over a name. Both are read at click time.</p></template>
+  </body>
+</html>

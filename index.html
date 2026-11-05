@@ -3,72 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A calmer place for notes, links, and ideas." />
-    <title>Northstar | Make room for what matters</title>
+    <meta name="description" content="A live tour of every Vizoalica feature: self-hosted, cookieless, privacy-first analytics on your own Cloudflare account." />
+    <title>Vizoalica feature demo | Vizoalica demo</title>
     <link rel="stylesheet" href="styles.css" />
     <script async src="/vizoalica-loader.js"></script>
     <script defer src="app.js"></script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="wordmark" href="index.html" aria-label="Northstar home">northstar<span>.</span></a>
-      <nav aria-label="Primary navigation">
-        <a class="active" href="index.html">Home</a>
-        <a href="library.html">Library</a>
-        <a href="pricing.html">Pricing</a>
-      </nav>
-      <button class="button button-small" data-open-signup>Start free</button>
-    </header>
-
-    <main>
-      <section class="hero">
-        <p class="eyebrow">A calmer place to work</p>
-        <h1>Build a library<br />you want to return to.</h1>
-        <p class="hero-copy">Northstar brings your notes, links, and half-formed ideas into one quiet workspace. No feeds. No urgency. Just the work in front of you.</p>
-        <div class="hero-actions">
-          <button class="button" data-open-signup>Create your workspace <span>→</span></button>
-          <a class="text-link" href="library.html">Explore the library</a>
-        </div>
-        <p class="microcopy">Free for personal projects. No card required.</p>
-      </section>
-
-      <section class="workspace-preview" aria-label="Northstar workspace preview">
-        <aside>
-          <div class="preview-mark">N</div>
-          <p class="preview-title">my northstar</p>
-          <a class="selected" href="#today">Today <span>4</span></a>
-          <a href="#library">Library</a>
-          <a href="#archive">Archive</a>
-          <div class="sidebar-bottom"><span class="avatar">AM</span><span>Alex Morgan</span></div>
-        </aside>
-        <div class="preview-content">
-          <div class="preview-topbar"><span>Tuesday, September 1</span><span class="online-dot">All changes saved</span></div>
-          <div class="preview-heading"><div><p class="eyebrow">Today</p><h2>Good morning, Alex.</h2></div><button class="round-button" data-open-signup aria-label="Create a new note">+</button></div>
-          <div class="note-grid">
-            <article class="note note-sand"><p class="note-label">THINKING</p><h3>What would a more generous internet feel like?</h3><footer><span>Today</span><span>•••</span></footer></article>
-            <article class="note note-blue"><p class="note-label">READING</p><h3>On attention as a form of care</h3><footer><span>3 highlights</span><span>•••</span></footer></article>
-            <article class="note note-white"><p class="note-label">PROJECTS</p><h3>Garden studio</h3><p class="note-body">Material ideas, rough costs, and the light we want to live with.</p><footer><span>Updated 2h ago</span><span>•••</span></footer></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="principles">
-        <p class="eyebrow">Designed for the long view</p>
-        <div class="principle-grid">
-          <article><span>01</span><h2>Keep the signal.</h2><p>A home for the things worth holding on to, without the noise that usually surrounds them.</p></article>
-          <article><span>02</span><h2>Find your way back.</h2><p>Thoughtful organization that helps a past idea meet its future moment.</p></article>
-          <article><span>03</span><h2>Work at your pace.</h2><p>Private by default, generously simple, and built to leave space for thinking.</p></article>
-        </div>
-      </section>
-
-      <section class="closing-callout">
-        <p class="eyebrow">Your next idea has a home</p>
-        <h2>Start with one small thing.</h2>
-        <button class="button button-light" data-open-signup>Try Northstar free <span>→</span></button>
-      </section>
-    </main>
-
-    <footer><span>© 2026 Northstar</span><span>Make room for what matters</span></footer>
-    <dialog id="signup-dialog"><button class="dialog-close" aria-label="Close">×</button><p class="eyebrow">WELCOME IN</p><h2>Make this space yours.</h2><p>Choose a plan to continue exploring the Northstar workspace.</p><a class="button" href="pricing.html">View plans <span>→</span></a></dialog>
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Vizoalica feature demo</p>
+        <h1>Vizoalica feature demo</h1>
+        <p class="lead">A live tour of every Vizoalica feature: self-hosted, cookieless, privacy-first analytics on your own Cloudflare account.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<div class="callout"><p><strong>This site is instrumented with Vizoalica.</strong> Everything you do on these pages is measured by the real SDK, so each demo shows the fields Vizoalica records and the console report they feed. The badge in the header says whether the SDK is connected in this deployment.</p></div>
+<h2 class="section">Features</h2><div class="grid"><a class="card feature" href="pageviews.html"><span class="tag">Traffic</span><h3>Page views</h3><p>Every screen of a single-page site, counted once per page key.</p></a><a class="card feature" href="grouping.html"><span class="tag">Traffic</span><h3>Page grouping</h3><p>/orders/8841 and /orders/8842 become one page: /orders/:id.</p></a><a class="card feature" href="campaigns.html"><span class="tag">Traffic</span><h3>Campaigns</h3><p>UTM source, medium and campaign of the landing address.</p></a><a class="card feature" href="actions.html"><span class="tag">Behaviour</span><h3>Actions</h3><p>Clicks on buttons and links, named safely, never positions.</p></a><a class="card feature" href="rage-clicks.html"><span class="tag">Behaviour</span><h3>Rage clicks</h3><p>Bursts of rapid clicks on one control.</p></a><a class="card feature" href="events.html"><span class="tag">Behaviour</span><h3>Custom events</h3><p>Count signups, downloads and plan choices with one line.</p></a><a class="card feature" href="goals.html"><span class="tag">Behaviour</span><h3>Goals</h3><p>Conversions from page views, clicks or events.</p></a><a class="card feature" href="pixel.html"><span class="tag">Collection</span><h3>No-script pixel</h3><p>Count views of a README or any page that cannot run scripts.</p></a><a class="card feature" href="exclude.html"><span class="tag">Collection</span><h3>Exclude your visits</h3><p>By IP range or with a browser switch.</p></a><a class="card feature" href="privacy.html"><span class="tag">Collection</span><h3>Privacy & consent</h3><p>What is collected, what never is, and the consent state.</p></a><a class="card feature" href="ai.html"><span class="tag">Assistants</span><h3>Ask an AI assistant</h3><p>A read-only MCP server answers questions from your own data.</p></a></div>
+<h2 class="section">How data flows</h2><ol><li>A page loads one script tag, served by your own Cloudflare Worker.</li><li>The SDK filters URLs, referrers and properties in the browser, then sends non-blocking batches.</li><li>The Worker validates again, counts unique visitors with a daily-rotating hash, and writes raw batches to R2 and aggregates to D1.</li><li>You read the results in the local console, or ask an AI assistant through the local MCP server.</li></ol>
+<h2 class="section">The one tag this site uses</h2><p>Every page of this demo has the same generic, configuration-free tag. The values are fetched at runtime from <code>/vizoalica/config.json</code> (the dynamic CI/CD path), so no endpoint or key is committed to this repository.</p><pre class="code"><code>&lt;script async src=&quot;/vizoalica-loader.js&quot;&gt;&lt;/script&gt;</code></pre>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Install Vizoalica"><ol><li>Install the CLI: <code>npm install -g vizoalica</code></li><li>Create your backend: <code>vizoalica env add prod</code></li><li>Open the console: <code>vizoalica console</code>, choose <em>Websites → Add website</em>.</li><li>Paste the script tag from the website's <em>Install</em> page into your pages.</li></ol><pre class="code"><code>&lt;script
+  defer
+  src=&quot;https://&lt;your-backend&gt;.workers.dev/vizoalica.js&quot;
+  data-source=&quot;&lt;website key&gt;&quot;
+  data-token-url=&quot;none&quot;
+&gt;&lt;/script&gt;</code></pre><p>Needs Node.js 22+, macOS or Linux, and a Cloudflare account. Full guide: <a href="https://github.com/ehud-am/vizoalica#deployment-in-four-steps">deployment in four steps</a>.</p></template>
   </body>
 </html>

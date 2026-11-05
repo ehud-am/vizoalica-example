@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A local, read-only MCP server lets Claude, Codex or Cursor answer questions from your own analytics." />
+    <title>Ask an AI assistant | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Ask an AI assistant</p>
+        <h1>Ask an AI assistant</h1>
+        <p class="lead">A local, read-only MCP server lets Claude, Codex or Cursor answer questions from your own analytics.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Example</h2><div class="card"><p><strong>You:</strong> Which campaign brought the most visitors last week, and where are people rage clicking?</p><p><strong>Assistant (illustrative answer):</strong> In <em>prod</em>, <code>spring-sale</code> (newsletter / email) led with the most visitors. The <em>Save changes</em> button on <code>/settings</code> had the most rage-click bursts.</p></div><h2 class="section">Tools the assistant can call</h2><div class="table-wrap"><table><tr><th>Tool</th><th>Reads</th></tr><tr><td><code>get_environment_status</code></td><td>Role and scope, Worker and database versions, health</td></tr><tr><td><code>get_website_status</code></td><td>Collection and configuration status, excluded-address counts, install check</td></tr><tr><td><code>get_traffic_overview</code></td><td>Page views, visitors, trend, top pages, referrers, countries, devices</td></tr><tr><td><code>get_actions</code></td><td>Clicks on buttons and links, by page</td></tr><tr><td><code>get_custom_events</code></td><td>Custom events: count, visitors, trend, pages, property values</td></tr><tr><td><code>get_campaigns</code></td><td>Which tagged links brought visitors</td></tr><tr><td><code>get_rage_clicks</code></td><td>Controls clicked repeatedly in quick succession</td></tr><tr><td><code>get_goals</code></td><td>Conversions of a website’s goals</td></tr></table></div><h2 class="section">Privacy and safety</h2><ul><li>The MCP server runs on your computer and works on every environment you have.</li><li>It names the environment in every answer.</li><li>It is read-only and never hands a secret to the AI client.</li></ul>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Connect an assistant"><p>Install the local MCP server and skill for your client:</p><pre class="code"><code>vizoalica mcp install --client claude-code     # or claude-desktop, codex, cursor
+vizoalica skill install --client claude-code   # or codex</code></pre><p>Then ask: “How did my websites do last week?”. Create your Cloudflare backend yourself rather than through an agent conversation, so your API token never passes through it.</p></template>
+  </body>
+</html>
