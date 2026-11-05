@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vizoalica avoids collecting sensitive information by default, and the backend enforces it as well as the browser." />
+    <title>Privacy &amp; consent | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="privacy">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Privacy &amp; consent</p>
+        <h1>Privacy &amp; consent</h1>
+        <p class="lead">Vizoalica avoids collecting sensitive information by default, and the backend enforces it as well as the browser.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Consent state</span></div><div class="demo-body"><label class="field">data-consent<select data-consent><option>analytics-granted</option><option>analytics-denied</option><option>unknown</option></select></label><span class="code-label">What changes (illustrative)</span><pre class="code" data-nocopy><code data-out>Interact with the demo above.</code></pre></div></div><h2 class="section">What is and is not collected</h2><div class="table-wrap"><table><tr><td><span class="yes-mark">✓</span></td><td>Page origin and path (identifiers replaced by :id), route after #</td></tr><tr><td><span class="yes-mark">✓</span></td><td>Click actions: page, safe name, kind, link destination origin and path</td></tr><tr><td><span class="yes-mark">✓</span></td><td>Rage-click bursts as a count</td></tr><tr><td><span class="yes-mark">✓</span></td><td>UTM source, medium, campaign of the landing address</td></tr><tr><td><span class="yes-mark">✓</span></td><td>Custom events you create, with filtered scalar properties</td></tr><tr><td><span class="yes-mark">✓</span></td><td>Consent state, on every event</td></tr><tr><td><span class="no-mark">✗</span></td><td>Cookies, local storage or session storage (except the opt-in ignore switch)</td></tr><tr><td><span class="no-mark">✗</span></td><td>Form values, typed text, passwords, payment data, API keys, auth headers</td></tr><tr><td><span class="no-mark">✗</span></td><td>Raw URL query values, or fragments that are not routes</td></tr><tr><td><span class="no-mark">✗</span></td><td>Page text, DOM snapshots, heatmaps, click positions, session replay</td></tr><tr><td><span class="no-mark">✗</span></td><td>IP addresses and user agents (used only in memory to compute a daily hash)</td></tr></table></div><h2 class="section">Unique visitors without cookies</h2><p>For each event the backend computes a keyed hash of a random value for the current UTC day, the website, the visitor’s IP address and user agent, and stores only that hash. The day’s random value is deleted when the day ends, so nobody can recompute or link hashes afterwards.</p><ul><li>One person on one site on one day is one visitor.</li><li>The same person on two days, or on two sites, counts as two visitors.</li></ul><h2 class="section">Defence in depth</h2><p>Client-side filtering is a convenience, not a trust boundary: the backend also rejects sensitive-looking payloads before persistence. Whether you need a consent banner depends on the rules that apply to you.</p>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate consent"><p><code>data-consent</code> records a state on every event; it is not a consent banner.</p><pre class="code"><code>&lt;script
+  async
+  src=&quot;/vizoalica.js&quot;
+  data-endpoint=&quot;https://analytics.example.com/v1/events:batch&quot;
+  data-source=&quot;public_source_key&quot;
+  data-consent=&quot;analytics-granted&quot;
+&gt;&lt;/script&gt;</code></pre><p>Values: <code>analytics-granted</code>, <code>analytics-denied</code>, <code>unknown</code> (default). <strong>To send nothing for a visitor who declines, do not load the script.</strong></p></template>
+  </body>
+</html>

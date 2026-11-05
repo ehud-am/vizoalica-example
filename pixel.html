@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Count views of pages that cannot run the script, such as a GitHub or npm README, with a 1×1 image request." />
+    <title>No-script pixel | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="pixel">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">No-script pixel</p>
+        <h1>No-script pixel</h1>
+        <p class="lead">Count views of pages that cannot run the script, such as a GitHub or npm README, with a 1×1 image request.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Build your pixel</span></div><div class="demo-body"><form data-form class="fields-2"><label class="field">Ingestion endpoint host<input name="endpoint" placeholder="prod-vizoalica.example.workers.dev"></label><label class="field">Website key<input name="key" placeholder="your website key"></label><label class="field">Path for this page<input name="path" value="/github/readme"></label></form><p class="hint" data-err></p><span class="code-label">Markdown</span><pre class="code"><code data-md></code></pre><span class="code-label">HTML</span><pre class="code"><code data-html></code></pre></div></div><h2 class="section">How it works</h2><ul><li>Off by default and enabled <strong>per website</strong>. Each image load is one page view under the path you choose.</li><li>An image request carries no origin, so anyone who knows the website key could forge views: use a separate website for READMEs.</li><li>GitHub and npm proxy images, so counts there are rough and unique visitors cannot be told apart.</li><li>The path must start with <code>/</code>, be at most 512 characters and have no <code>?</code> or <code>#</code>.</li></ul><h2 class="section">Payload</h2><span class="code-label">One request, no script, no storage</span><pre class="code"><code>![](https://&lt;backend&gt;/v1/pixel.gif?website=&lt;website-key&gt;&amp;path=/github/readme)</code></pre>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate the pixel"><ol><li>Update the backend: <code>vizoalica deploy &lt;name&gt; --update</code>.</li><li>Console: website → <em>Edit</em> → <em>Count views from pages that cannot run scripts</em>, save.</li><li>Paste the line shown under <em>No-script pixel</em> into your README, with a unique <code>path</code>.</li></ol><p>To keep the endpoint and key out of a repository, put markers in the README and let CI fill them:</p><pre class="code"><code>&lt;!-- readme-pixel:start --&gt;
+&lt;!-- readme-pixel:end --&gt;</code></pre><p>The script <code>scripts/readme-pixel.mjs</code> in the Vizoalica repository fills the block from <code>VIZOALICA_INGEST_ENDPOINT</code> and <code>VIZOALICA_WEBSITE_KEY</code>.</p></template>
+  </body>
+</html>

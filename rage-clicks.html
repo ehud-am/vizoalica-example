@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Find the buttons and links people hammer because they look broken, with no positions and no visitor IDs." />
+    <title>Rage clicks | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="rage">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Rage clicks</p>
+        <h1>Rage clicks</h1>
+        <p class="lead">Find the buttons and links people hammer because they look broken, with no positions and no visitor IDs.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Click this button three times quickly</span></div><div class="demo-body"><div class="row"><button class="btn primary" data-rage>Save changes</button><span class="hint">This button deliberately does nothing.</span></div><ul class="log" data-log aria-live="polite"><li class="no">Nothing yet.</li></ul><span class="code-label">Recorded fields (illustrative)</span><pre class="code" data-nocopy><code data-out>Interact with the demo above.</code></pre></div></div><h2 class="section">How it works</h2><ul><li>A rage click is <strong>3 or more mouse or touch clicks on one control within 1 second</strong>.</li><li>At most one burst per control every 5 seconds, and 20 a minute per page load.</li><li>Keyboard activation never counts (holding Enter repeats clicks without frustration).</li><li>The burst is an extra action event flagged <code>rage: true</code>, sent in its own request, so a backend that does not know it rejects only the burst.</li><li>Stored: a count per minute, page and control. No visitor, session or position, so the report cannot say how many different people raged.</li></ul>
+<div class="callout"><p>Read a burst as a prompt to look, not a verdict: a stepper button pressed repeatedly looks the same as frustration.</p></div><h2 class="section">Payload</h2><pre class="code"><code>{
+  &quot;page&quot;: &quot;/settings&quot;,
+  &quot;name&quot;: &quot;Save changes&quot;,
+  &quot;kind&quot;: &quot;button&quot;,
+  &quot;rage&quot;: true
+}</code></pre>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate rage clicks"><p>Vizoalica needs one script tag on your pages; nothing else is required for this feature.</p><span class="code-label">Your Install page in the console shows this tag with your own values</span><pre class="code"><code>&lt;script
+  defer
+  src=&quot;https://&lt;your-backend&gt;.workers.dev/vizoalica.js&quot;
+  data-source=&quot;&lt;website key&gt;&quot;
+  data-token-url=&quot;none&quot;
+&gt;&lt;/script&gt;</code></pre><p>Requires SDK 0.12+ and a backend updated with <code>vizoalica deploy &lt;name&gt; --update</code> (migration <code>0007_rage_click_reports.sql</code>). Update the backend <em>before</em> bundling a new SDK.</p><p>Only controls that are already recorded as actions can have a burst, so use real buttons and links, and avoid <code>data-vizoalica-ignore</code> on controls you want analysed.</p></template>
+  </body>
+</html>

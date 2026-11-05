@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pages that differ only by an identifier become one page, and the identifier is never stored." />
+    <title>Page grouping | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="grouping">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Page grouping</p>
+        <h1>Page grouping</h1>
+        <p class="lead">Pages that differ only by an identifier become one page, and the identifier is never stored.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Page key calculator</span></div><div class="demo-body"><label class="field">Address<input data-url value="https://example.com/orders/8841" spellcheck="false"></label><div data-examples class="row"><button class="btn small" data-sample="https://example.com/orders/8841">/orders/8841</button><button class="btn small" data-sample="https://example.com/orders/3f2b8c1e-5d4a-4a37-9c1b-0e7d2a6f9b10">/orders/3f2b8c1e-5d4a-4a37-9c1b-0e7d2a6f9b10</button><button class="btn small" data-sample="https://example.com/u/jane@example.com">/u/jane@example.com</button><button class="btn small" data-sample="https://example.com/blog/2026/09/launch">/blog/2026/09/launch</button><button class="btn small" data-sample="https://example.com/app#/orders/8841?tab=items">/app#/orders/8841?tab=items</button><button class="btn small" data-sample="https://example.com/products/blue-widget">/products/blue-widget</button><button class="btn small" data-sample="https://example.com/page/2">/page/2</button></div><dl class="kv"><dt>Page key</dt><dd data-out></dd></dl><p class="hint">This calculator follows the documented rules, for illustration. The SDK and the backend apply them for real.</p></div></div><h2 class="section">Rules</h2><div class="table-wrap"><table><tr><th>A segment that is…</th><th>Becomes</th><th>Example</th></tr>
+<tr><td>digits only</td><td><code>:id</code></td><td><code>8841</code></td></tr><tr><td>a UUID</td><td><code>:id</code></td><td><code>3f2b8c1e-…</code></td></tr><tr><td>hexadecimal, 16+ characters</td><td><code>:id</code></td><td><code>5f2b8c1e5d4a4a37</code></td></tr><tr><td>a ULID</td><td><code>:id</code></td><td><code>01ARZ3NDEKTSV4RRFFQ69G5FAV</code></td></tr><tr><td>a 20+ char token with upper, lower and digit</td><td><code>:id</code></td><td><code>V1StGXR8_Z5jdHi6B-myT</code></td></tr><tr><td>contains <code>@</code></td><td><code>:id</code></td><td><code>jane@example.com</code></td></tr><tr><td>words, slugs, versions, file names</td><td>kept</td><td><code>my-first-post</code></td></tr><tr><td>year, month, optional day</td><td>kept</td><td><code>/blog/2026/09/launch</code></td></tr></table></div>
+<p>The browser groups first and the backend applies the same rule again, so older SDK files and other clients are covered too. Readable slugs that identify a record (<code>/products/blue-widget</code>) cannot be recognised and stay separate; the long tail collapses into “Other” in the console.</p>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate page grouping"><p>Nothing to add: grouping is automatic in the SDK and the backend.</p><p>To get the best reports, design routes that carry identifiers as numeric or UUID segments:</p><pre class="code"><code>/orders/8841          → /orders/:id
+/orders/blue-widget   → stays separate (a slug)</code></pre><p>A short number is grouped too: <code>/page/2</code> becomes <code>/page/:id</code>.</p></template>
+  </body>
+</html>

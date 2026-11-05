@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Define what counts as a conversion. Goals add no tracking: they are counted from page views, clicks and events you already send." />
+    <title>Goals | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="goals">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Goals</p>
+        <h1>Goals</h1>
+        <p class="lead">Define what counts as a conversion. Goals add no tracking: they are counted from page views, clicks and events you already send.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Three kinds of goal</span></div><div class="demo-body"><div class="table-wrap"><table><tr><th>Goal</th><th>Kind</th><th>Target</th><th>Trigger</th><th>Demo count</th></tr>
+<tr><td>Reached thank-you page</td><td>Page view</td><td><code>/thanks.html</code></td><td><a class="btn small" data-goal-page href="thanks.html">Go to /thanks.html</a></td><td data-count="page">0</td></tr>
+<tr><td>Clicked trial</td><td>Click</td><td><code>Start free trial</code></td><td><button class="btn small" data-goal-click>Start free trial</button></td><td data-count="click">0</td></tr>
+<tr><td>Signed up</td><td>Event</td><td><code>signup</code></td><td><button class="btn small" data-goal-event>Send signup event</button></td><td data-count="event">0</td></tr></table></div><p class="hint">The demo counts are local to this page view. Real counts are aggregated by your backend and read in the console’s Goals page.</p></div></div><h2 class="section">How it works</h2><ul><li><strong>Page view</strong> goals match a page key exactly, after grouping. <strong>Click</strong> goals match an action name on any page. <strong>Event</strong> goals match a custom event name.</li><li>Up to 20 goals per website. Reports show conversions, visitors, rate and trend. Aggregate counts only.</li><li>Adding and deleting needs a website-owner or admin key; analyst keys read only.</li></ul><h2 class="section">Payload</h2><span class="code-label">Goal definition (admin API)</span><pre class="code"><code>{ &quot;name&quot;: &quot;Signed up&quot;, &quot;kind&quot;: &quot;event&quot;, &quot;target&quot;: &quot;signup&quot; }</code></pre>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate goals"><p>Goals are configured on the backend, not on the page. In the console: <em>Manage → Websites → your website → Goals</em>. Or from a pipeline:</p><pre class="code"><code>curl -X POST &quot;$ENDPOINT/v1/admin/projects/$PROJECT/sources/$WEBSITE/goals&quot; \
+  -H &quot;authorization: Bearer $VIZOALICA_KEY&quot; -H &#x27;content-type: application/json&#x27; \
+  -d &#x27;{&quot;name&quot;:&quot;Signed up&quot;,&quot;kind&quot;:&quot;event&quot;,&quot;target&quot;:&quot;signup&quot;}&#x27;</code></pre><p>Make sure the page, the action name, or the event you target is actually sent (see Page views, Actions and Custom events).</p></template>
+  </body>
+</html>

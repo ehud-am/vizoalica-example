@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Keep your own and your team’s visits out of the numbers, without storing addresses or identifiers." />
+    <title>Exclude your visits | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="exclude">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Exclude your visits</p>
+        <h1>Exclude your visits</h1>
+        <p class="lead">Keep your own and your team’s visits out of the numbers, without storing addresses or identifiers.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Address exclusion tester</span></div><div class="demo-body"><form data-form class="fields-2"><label class="field">Excluded list (one per line)<textarea name="list" spellcheck="false">203.0.113.7
+198.51.100.0/24</textarea></label><label class="field">Visitor address<input name="ip" value="198.51.100.42" spellcheck="false"></label></form><p data-out aria-live="polite"></p></div></div><h2 class="section">Browser switch</h2><p>Open any page of your site once with <code>?vizoalica_ignore=1</code> and that browser sends nothing. This stores one value in <em>your own</em> browser, and is the only thing the SDK ever writes. Try it on this demo:</p><div class="row"><a class="btn" href="exclude.html?vizoalica_ignore=1">Turn counting off in this browser</a><a class="btn" href="exclude.html?vizoalica_ignore=0">Turn it back on</a></div><h2 class="section">How it works</h2><div class="table-wrap"><table><tr><th></th><th>Excluded addresses</th><th>Browser switch</th></tr><tr><td>Good for</td><td>Offices or homes with a fixed address</td><td>Changing connections, phones</td></tr><tr><td>Set up in</td><td>Console, website → Edit</td><td>Opening a link once</td></tr><tr><td>Counted for transparency</td><td>Yes, per day</td><td>No (nothing is sent)</td></tr></table></div>
+<ul><li>Excluded visits are dropped on arrival and never stored; only a per-day count is kept, for 32 days.</li><li>Not retroactive. Shared addresses exclude everyone behind them. Up to 25 IPv4/IPv6 addresses or ranges.</li></ul>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Exclude your own visits"><p><strong>Addresses.</strong> Console → website → <em>Edit</em> → <em>Exclude your own visits</em>, one address or range per line:</p><pre class="code"><code>203.0.113.7
+198.51.100.0/24
+2001:db8::/48</code></pre><p>Nothing to deploy on your site; needs a backend update (<code>0006_internal_traffic_exclusion.sql</code>).</p><p><strong>Browser switch.</strong> Open <code>https://example.com/?vizoalica_ignore=1</code> once per browser; reverse with <code>=0</code>. Anyone can send someone a link with the switch, so do not rely on it being set only by you.</p></template>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="See which tagged links bring visitors, without cookies or visitor IDs." />
+    <title>Campaigns | Vizoalica demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="/vizoalica-loader.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body data-demo="campaigns">
+    <header data-header></header>
+    <div class="shell">
+      <nav data-nav><noscript><a href="index.html">Overview</a></noscript></nav>
+      <main>
+        <p class="eyebrow">Campaigns</p>
+        <h1>Campaigns</h1>
+        <p class="lead">See which tagged links bring visitors, without cookies or visitor IDs.</p>
+        <div class="toolbar"><button class="btn primary" data-integration="integration">How to integrate ›</button><a class="btn" href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a></div>
+<h2 class="section">Try it</h2><div class="demo"><div class="demo-head"><span>Tagged links to this page</span></div><div class="demo-body"><div class="row"><a class="btn" href="campaigns.html?utm_source=newsletter&utm_medium=email&utm_campaign=spring-sale">Newsletter, spring sale</a><a class="btn" href="campaigns.html?utm_source=Twitter&utm_medium=social&utm_campaign=launch-week">Social post</a><a class="btn" href="campaigns.html?utm_source=hn">Only a source</a><a class="btn" href="campaigns.html?utm_source=ads&utm_term=shoes&gclid=abc123&fbclid=xyz">Extra parameters (dropped)</a><a class="btn" href="campaigns.html">No tags</a></div><p class="hint">Opening a link is a landing page view carrying these labels.</p><span class="code-label">Recorded fields (documented)</span><pre class="code" data-nocopy><code data-out>Interact with the demo above.</code></pre><p class="hint" data-dropped></p></div></div><h2 class="section">Payload</h2><p>Only the landing page view carries the labels. Labels are lowercased and cleaned in the browser, then again by the backend.</p><pre class="code"><code>https://example.com/pricing?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=spring-sale
+
+{
+  &quot;page&quot;: &quot;/pricing&quot;,
+  &quot;campaign&quot;: { &quot;source&quot;: &quot;newsletter&quot;, &quot;medium&quot;: &quot;email&quot;, &quot;campaign&quot;: &quot;spring-sale&quot; }
+}</code></pre><h2 class="section">How it works</h2><ul><li>Three labels only: <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>. <code>utm_term</code>, <code>utm_content</code>, <code>gclid</code> and <code>fbclid</code> are dropped.</li><li>Cleaning: lowercased, emails become <code>[email]</code>, long digit runs <code>[number]</code>, token-like words <code>[token]</code>, only letters, digits, spaces and <code>_ - . + : /</code> kept, cut to 64 characters.</li><li>Attribution is by landing page only. No cross-visit attribution, because no visitor identifiers are kept.</li><li>Referrers are reported separately; the two are not merged.</li></ul>
+      </main>
+    </div>
+    <footer data-footer></footer>
+    <template id="integration" data-title="Integrate campaigns"><p>Tag the links you share. No code changes beyond the script tag (SDK 0.11+ and an updated backend):</p><pre class="code"><code>https://example.com/pricing?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=spring-sale</code></pre><p>Read it in the console under <em>Analytics → Campaigns</em>, or ask your assistant: “which campaign brought the most visitors last week?”.</p><p>Don’t put personal data in a label; cleaning removes common forms, but the best protection is not to add any.</p></template>
+  </body>
+</html>
