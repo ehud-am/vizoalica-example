@@ -79,7 +79,7 @@ jobs:
             # '|' is excluded from the values above, so it is a safe sed delimiter.
             sed -i "s|<script async src=\"/vizoalica-loader.js\"></script>|${tag}|" "$f"
           done
-          echo "Staged $(ls _site | wc -l) files; script origin ${origin}"
+          echo "Staged $(ls _site | wc -l) files"
 
       - name: Deploy to Cloudflare Pages
         env:
