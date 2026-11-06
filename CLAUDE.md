@@ -21,8 +21,9 @@ It is maintained by **ehud-am**.
 ## Site rules
 
 - Plain static HTML, CSS, and JavaScript. No build step: the deploy workflow publishes the repository root.
-- Every page loads `<script async src="/vizoalica-loader.js"></script>` and nothing else from Vizoalica.
-  Configuration is fetched at runtime and never embedded in source.
+- Every page keeps the placeholder `<script async src="/vizoalica-loader.js"></script>`. The deploy
+  workflow replaces it with the real Vizoalica tag in CI from repository secrets, so no endpoint or
+  key is ever committed.
 - Each Vizoalica feature gets its own page with a payload example, an explanation, and an
   "Integration" popup that shows what the website has to add.
 - Payloads and rules shown on the pages must match the Vizoalica docs. Do not invent fields.

@@ -31,17 +31,22 @@ so and the demos run without sending anything.
 
 ## Vizoalica integration
 
-This site uses Vizoalica's dynamic (CI/CD) integration path. `.github/workflows/deploy-website.yml`
-calls Vizoalica's reusable deployment workflow on every push to `main`, which deploys the site to
-Cloudflare Pages together with the Vizoalica configuration and token-issuing Pages Functions. All
-per-deployment values live only in GitHub Actions variables/secrets and the Cloudflare Pages
-environment, never in committed source.
+Vizoalica's one-script-tag install is used, with no signed tokens. The committed pages contain a
+placeholder tag, `<script async src="/vizoalica-loader.js"></script>`. On every push to `main`,
+`.github/workflows/deploy-website.yml` stages the site, replaces the placeholder with the real
+Vizoalica tag and deploys to Cloudflare Pages. The tag's values come from GitHub Actions secrets,
+so nothing deployment-specific is committed:
 
-Every page loads `<script async src="/vizoalica-loader.js"></script>`, which fetches
-`/vizoalica/config.json` at runtime.
+| Kind | Name | Purpose |
+| --- | --- | --- |
+| Secret | `CF_API_TOKEN` | Cloudflare token with Pages: Edit |
+| Secret | `CF_ACCOUNT_ID` | Cloudflare account |
+| Secret | `VIZOALICA_INGEST_ENDPOINT` | Backend ingest URL, e.g. `https://<backend>/v1/events:batch` |
+| Secret | `VIZOALICA_WEBSITE_KEY` | The website key from the Vizoalica console |
+| Variable | `CF_PAGES_PROJECT` | Cloudflare Pages project name |
 
-See the [deployment workflow contract](https://github.com/ehud-am/vizoalica/blob/main/specs/011-quality-simplicity-release/contracts/deploy-workflow-contract.md)
-for the required repository variables and secrets.
+The website must not require signed tokens in the Vizoalica console. Run locally, the placeholder
+does nothing and the header badge says the SDK is not loaded.
 
 ## License
 
