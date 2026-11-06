@@ -36,6 +36,7 @@
       <a class="brand" href="index.html"><span class="brand-mark">V</span>Vizoalica <small>demo</small></a>
       <span class="header-spacer"></span>
       <span class="status" data-sdk-status data-state="wait">Checking SDK…</span>
+      <a class="header-link" href="https://vizoalica.dev">vizoalica.dev</a>
       <a class="header-link" href="https://github.com/ehud-am/vizoalica">GitHub</a>`;
   }
   const nav = $('[data-nav]');
@@ -52,7 +53,8 @@
   const footer = $('[data-footer]');
   if (footer) {
     footer.className = 'site-footer';
-    footer.innerHTML = `Demo site for <a href="https://github.com/ehud-am/vizoalica">Vizoalica</a> · MIT licensed ·
+    footer.innerHTML = `Demo site for <a href="https://vizoalica.dev">Vizoalica</a> · MIT licensed ·
+      <a href="https://github.com/ehud-am/vizoalica">Vizoalica on GitHub</a> ·
       <a href="https://github.com/ehud-am/vizoalica-example">Source of this demo</a>`;
   }
 

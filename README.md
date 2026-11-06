@@ -3,7 +3,7 @@
 The demo site for [Vizoalica](https://github.com/ehud-am/vizoalica), the open-source, self-hosted,
 cookieless, privacy-first web analytics that runs in your own Cloudflare account.
 
-Live: <https://vizoalica-example.pages.dev>
+Live: <https://vizoalica-example.pages.dev> · Vizoalica website and docs: <https://vizoalica.dev>
 
 Each Vizoalica feature has its own page with an interactive demo, the fields that get recorded, an
 explanation, and a **How to integrate** popup showing what your website has to add:
